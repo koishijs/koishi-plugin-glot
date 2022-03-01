@@ -1,7 +1,6 @@
 {
   "name": "koishi-plugin-glot",
   "description": "Execute Code in [glot.io](https://glot.io)",
-  "private": true,
   "version": "1.0.0",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -9,12 +8,28 @@
     "lib",
     "dist"
   ],
+  "author": "anillc",
+  "maintainers": [
+    "Shigma <shigma10826@gmail.com>"
+  ],
   "license": "MIT",
-  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koishijs/koishi-plugin-glot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/koishijs/koishi-plugin-glot/issues"
+  },
+  "homepage": "https://github.com/koishijs/koishi-plugin-glot",
   "keywords": [
     "chatbot",
     "koishi",
-    "plugin"
+    "plugin",
+    "glot",
+    "code",
+    "execute",
+    "compile",
+    "run"
   ],
   "peerDependencies": {
     "koishi": "^4.3.2"
