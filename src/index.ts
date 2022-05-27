@@ -1,21 +1,15 @@
 import { Context, Logger, Quester, Schema } from 'koishi'
+import { LANGUAGES } from './languages'
 
 const logger = new Logger('glot')
 
-const LANGUAGES = [
-  'assembly', 'ats', 'bash', 'c', 'clojure', 'cobol', 'coffeescript', 'cpp', 'crystal', 'csharp',
-  'd', 'elixir', 'elm', 'erlang', 'fsharp', 'go', 'groovy', 'haskell', 'idris', 'java', 'javascript',
-  'julia', 'kotlin', 'lua', 'mercury', 'nim', 'nix', 'ocaml', 'perl', 'php', 'python', 'raku',
-  'ruby', 'rust', 'scala', 'swift', 'typescript',
-]
-
 const GLOT_BASE = 'https://glot.io/api'
 
-async function run(http: Quester, language: string, code: string) {
+async function run(http: Quester, language: string, filename: string, code: string) {
   try {
     return await http.post(`/run/${language}/latest`, {
       files: [{
-        name: 'koishi',
+        name: filename,
         content: code,
       }]
     })
@@ -50,11 +44,12 @@ export function apply(ctx: Context, config: Config) {
     .option('language', '-l <language:string>')
     .example("glot console.log('Hello World!')")
     .action(async ({ options }, code) => {
-      const language = options.language ?? config.defaultLanguage
-      if (!LANGUAGES.includes(language)) {
+      const languageName = options.language ?? config.defaultLanguage
+      const language = LANGUAGES.find(n => n[0] === languageName)
+      if (!language) {
         return '不支持的语言。'
       }
-      const res = await run(http, language, code)
+      const res = await run(http, language[0], `koishi.${language[1]}`,code)
       if (!res) {
         return '请求出错。'
       }
