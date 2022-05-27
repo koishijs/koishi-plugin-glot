@@ -30,3 +30,4 @@ mercury, nim, nix, ocaml, perl, php, python, raku, ruby, rust, scala, swift, typ
 - 基本语法: `glot <code>`
 - 选项列表:
   - -l, --language \<language> 语言
+  - -s, --stdin \<stdin> 标准输入
