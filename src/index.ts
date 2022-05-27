@@ -5,14 +5,16 @@ const logger = new Logger('glot')
 
 const GLOT_BASE = 'https://glot.io/api'
 
-async function run(http: Quester, language: string, filename: string, code: string) {
+async function run(http: Quester, language: string, filename: string, code: string, stdin?: string) {
   try {
-    return await http.post(`/run/${language}/latest`, {
+    const data = {
       files: [{
         name: filename,
         content: code,
       }]
-    })
+    } as any
+    if (stdin) data.stdin = stdin
+    return await http.post(`/run/${language}/latest`, data)
   } catch(e) {
     logger.error(e)
     return null
@@ -42,6 +44,7 @@ export function apply(ctx: Context, config: Config) {
   ctx.command('glot <code:rawtext>', '运行代码')
     .usage(`由 glot.io 提供的代码运行\n支持的语言: ${LANGUAGES.join(', ')}`)
     .option('language', '-l <language:string>')
+    .option('stdin', '-s <stdin:string>')
     .example("glot console.log('Hello World!')")
     .action(async ({ options }, code) => {
       const languageName = options.language ?? config.defaultLanguage
@@ -49,7 +52,7 @@ export function apply(ctx: Context, config: Config) {
       if (!language) {
         return '不支持的语言。'
       }
-      const res = await run(http, language[0], `koishi.${language[1]}`,code)
+      const res = await run(http, language[0], `koishi.${language[1]}`, code, options.stdin)
       if (!res) {
         return '请求出错。'
       }
