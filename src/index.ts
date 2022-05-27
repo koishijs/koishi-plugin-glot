@@ -49,9 +49,8 @@ export function apply(ctx: Context, config: Config) {
     .action(async ({ options }, code) => {
       const languageName = options.language ?? config.defaultLanguage
       const language = LANGUAGES.find(n => n[0] === languageName)
-      if (!language) {
-        return '不支持的语言。'
-      }
+      if (!language) return '不支持的语言。'
+      if (!code) return '请输入代码。'
       const res = await run(http, language[0], `koishi.${language[1]}`, code, options.stdin)
       if (!res) {
         return '请求出错。'
