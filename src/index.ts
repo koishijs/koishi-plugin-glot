@@ -42,7 +42,7 @@ export function apply(ctx: Context, config: Config) {
   })
 
   ctx.command('glot <code:rawtext>', '运行代码')
-    .usage(`由 glot.io 提供的代码运行\n支持的语言: ${LANGUAGES.join(', ')}`)
+    .usage(`由 glot.io 提供的代码运行\n支持的语言: ${LANGUAGES.map(n => n[0]).join(', ')}`)
     .option('language', '-l <language:string>')
     .option('stdin', '-s <stdin:string>')
     .example("glot console.log('Hello World!')")
