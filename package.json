@@ -32,6 +32,6 @@
     "run"
   ],
   "peerDependencies": {
-    "koishi": "^4.6.1"
+    "koishi": "^4.8.3"
   }
 }
