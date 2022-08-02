@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-glot",
   "description": "Execute Code in [glot.io](https://glot.io)",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -21,6 +21,15 @@
     "url": "https://github.com/koishijs/koishi-plugin-glot/issues"
   },
   "homepage": "https://github.com/koishijs/koishi-plugin-glot",
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "koishi": {
+    "description": {
+      "en": "Execute Code in [glot.io](https://glot.io)",
+      "zh": "使用 [glot.io](https://glot.io) 执行代码"
+    }
+  },
   "keywords": [
     "chatbot",
     "koishi",
@@ -32,6 +41,9 @@
     "run"
   ],
   "peerDependencies": {
+    "koishi": "^4.8.3"
+  },
+  "devDependencies": {
     "koishi": "^4.8.3"
   }
 }
