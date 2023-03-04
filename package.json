@@ -1,15 +1,16 @@
 {
   "name": "koishi-plugin-glot",
   "description": "Execute Code in [glot.io](https://glot.io)",
-  "version": "1.1.2",
+  "version": "1.1.5",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
     "lib",
     "dist"
   ],
-  "author": "anillc",
-  "maintainers": [
+  "author": "Anillc <void@anillc.cn>",
+  "contributors": [
+    "Anillc <void@anillc.cn>",
     "Shigma <shigma10826@gmail.com>"
   ],
   "license": "MIT",
@@ -22,9 +23,10 @@
   },
   "homepage": "https://github.com/koishijs/koishi-plugin-glot",
   "scripts": {
-    "build": "tsc -b"
+    "build": "atsc -b"
   },
   "koishi": {
+    "browser": true,
     "description": {
       "en": "Execute Code in [glot.io](https://glot.io)",
       "zh": "使用 [glot.io](https://glot.io) 执行代码"
@@ -38,12 +40,16 @@
     "code",
     "execute",
     "compile",
-    "run"
+    "run",
+    "evaluate"
   ],
   "peerDependencies": {
     "koishi": "^4.8.3"
   },
   "devDependencies": {
-    "koishi": "^4.8.3"
+    "@types/node": "^18.14.0",
+    "atsc": "^1.2.2",
+    "koishi": "^4.11.7",
+    "typescript": "^4.9.5"
   }
 }
