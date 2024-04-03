@@ -1,4 +1,4 @@
-import { Context, Logger, Quester, Schema } from 'koishi'
+import { Context, h, Logger, Quester, Schema } from 'koishi'
 import { LANGUAGES } from './languages'
 
 const logger = new Logger('glot')
@@ -56,8 +56,8 @@ export function apply(ctx: Context, config: Config) {
         return '请求出错。'
       }
       if (res.error) {
-         return `运行出错: ${res.error}\n${res.stderr}`
+        return `运行出错: ${h.escape(res.error)}\n${h.escape(res.stderr)}`
       }
-      return res.stdout + res.stderr
+      return h.escape(res.stdout + res.stderr)
     })
 }
